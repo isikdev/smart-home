@@ -1,6 +1,6 @@
 $(document).ready(function() {
     $('#colorpicker').farbtastic('#color');
 });
-$("#settings").on("mouseenter mouseleave", function(event) {
+$("#settings").on("mouseenter", function(event) {
     $(".slideup__settings").toggleClass("slideup__settings-active");
 });
