@@ -8,13 +8,123 @@
     <title>Управления люстрой</title>
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="./css/farbtastic.css">
+    <style>
+        .slidecontainer {
+            width: 100%;
+        }
+        
+        .slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 5px;
+            border-radius: 5px;
+            background: rgb(0, 1, 20);
+            background: linear-gradient(90deg, rgba(0, 1, 20, 1) 0%, rgba(61, 57, 72, 1) 19%, rgba(255, 255, 255, 1) 100%);
+            outline: none;
+            opacity: 1;
+            -webkit-transition: .2s;
+            transition: opacity .2s;
+        }
+        
+        .slidercool {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 5px;
+            border-radius: 5px;
+            background: rgb(148, 175, 221);
+            background: linear-gradient(90deg, rgba(148, 175, 221, 1) 0%, rgba(165, 161, 173, 1) 39%, rgba(182, 147, 131, 1) 55%, rgba(217, 116, 68, 1) 100%);
+            outline: none;
+            opacity: 1;
+            -webkit-transition: .2s;
+            transition: opacity .2s;
+        }
+        
+        .slidercontrol:hover {
+            opacity: 1;
+        }
+        
+        .slidercontrol::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 25px;
+            height: 25px;
+            border-radius: 100%;
+            background: #fff;
+            border: 4px solid #6999d3;
+            cursor: pointer;
+        }
+        
+        .slidercontrol::-moz-range-thumb {
+            width: 25px;
+            height: 25px;
+            border-radius: 100%;
+            background: #becae9;
+            border: 4px solid #6999d3;
+            cursor: pointer;
+        }
+        
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 52px;
+            height: 24px;
+        }
+        
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .sliderCheck {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #becae9;
+            -webkit-transition: .4s;
+            transition: .4s;
+            border-radius: 3px;
+        }
+        
+        .sliderCheck:before {
+            position: absolute;
+            content: "";
+            background-image: url("img/ico/switch.png");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            height: 100%;
+            width: 26px;
+            background-color: #788bc5;
+            -webkit-transition: .4s;
+            transition: .4s;
+            border-radius: 3px;
+        }
+        
+        input:checked+.sliderCheck {
+            background-color: #becae9;
+        }
+        
+        input:focus+.sliderCheck {
+            box-shadow: 0 0 1px #becae9;
+        }
+        
+        input:checked+.sliderCheck:before {
+            -webkit-transform: translateX(-26px);
+            -ms-transform: translateX(-26px);
+            transform: translateX(-26px);
+        }
+    </style>
 </head>
 
 <body>
     <div class="wrapper">
         <section class="info__room">
             <div class="info__room-item">
-                <button>
+                <button class="back">
                     <img src="./img/ico/back.png" alt="back">
                 </button>
             </div>
@@ -23,20 +133,68 @@
                 <h3>локация «кухня»</h3>
             </div>
             <div class="info__room-item">
-                <button><img src="./img/ico/settings.png" alt="settings"></button>
+                <button class="settings" id="settings"><img src="./img/ico/settings.png" alt="settings"></button>
             </div>
         </section>
         <section class="setup">
             <div id="colorpicker"></div>
-            <div class="setup__picker">
-                <div class="setup__btn">
-                    <button><img src="./img/ico/off.png" alt="off"></button>
+        </section>
+        <section class="colors">
+            <button class="color red"></button>
+            <button class="color orange"></button>
+            <button class="color yellow"></button>
+            <button class="color green"></button>
+            <button class="color skyblue"></button>
+            <button class="color blue"></button>
+            <button class="color purple"></button>
+        </section>
+        <section class="filter__darkness">
+            <div class="light">
+                <div class="light__ico left__ico">
+                    <img src="./img/ico/dark.png" alt="dark">
                 </div>
+                <div class="slidecontainer">
+                    <input type="range" min="1" max="100" value="50" class="slider slidercontrol" id="myRange">
+                </div>
+                <div class="light__ico right__ico">
+                    <img src="./img/ico/lightnes.png" alt="lightnes">
+                </div>
+            </div>
+            <div class="light">
+                <div class="light__ico left__ico">
+                    <img src="./img/ico/cold.png" alt="cold">
+                </div>
+                <div class="slidecontainer">
+                    <input type="range" min="1" max="100" value="50" class="slidercool  slidercontrol" id="myRange">
+                </div>
+                <div class="light__ico right__ico">
+                    <img src="./img/ico/hot.png" alt="hot">
+                </div>
+            </div>
+        </section>
+        <section class="slideup__settings" id="slideup__settings">
+            <h1>Дополнительные настройки</h1>
+            <div class="slideup__perexod">
+                <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="sliderCheck"></span>
+                </label>
+                <h2>плавный переход</h4>
+            </div>
+            <div class="slideup__option">
+                <select name="light" id="light__select">
+                    <option value="Effect 1">световые эффекты</option>
+                    <option value="Effect 1">эффект 1</option>
+                    <option value="Effect 1">эффект 2</option>
+                    <option value="Effect 1">эффект 3</option>
+                    <option value="Effect 1">эффект 4</option>
+                </select>
             </div>
         </section>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <script src="./js/farbtastic.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
     <script src="./js/script.js"></script>
 </body>
 

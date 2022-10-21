@@ -23,13 +23,12 @@
 
 .farbtastic * {
     position: absolute;
-    cursor: crosshair;
 }
 
 .farbtastic,
 .farbtastic .wheel {
-    width: 195px;
-    height: 195px;
+    width: 250px;
+    height: 250px;
 }
 
 .farbtastic .color,
@@ -43,11 +42,11 @@
 
 .farbtastic .wheel {
     background: url(../img/wheel.png) no-repeat;
-    width: 195px;
-    height: 195px;
+    width: 250px;
+    height: 250px;
 }
 
-.farbtastic .s1-marker {
+.farbtastic .sl-marker {
     display: none;
 }
 
